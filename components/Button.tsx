@@ -19,6 +19,7 @@ const Button = ({
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`disabled:opacity-70 disabled:cursor-not-allowed rounded-md font-semibold hover:opacity-80 transition border-2 
       ${fullWidth ? "w-full" : "w-fit"}
       ${
