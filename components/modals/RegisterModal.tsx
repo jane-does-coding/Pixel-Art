@@ -7,21 +7,16 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 
 const RegisterModal = () => {
   const RegisterModal = useRegisterModal();
-  /*   const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState({
     nickname: "",
-    gender: "",
+    gender: "female",
     email: "",
     password: "",
-  }); */
-
-  const [nickname, setNickname] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("female");
-  const [password, setPassword] = useState("");
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback(async () => {
-    console.log(email, nickname, gender, password);
+    console.log(inputs);
 
     try {
       setIsLoading(true);
@@ -34,7 +29,7 @@ const RegisterModal = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [RegisterModal, email, nickname, gender, password]);
+  }, [RegisterModal, inputs]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -45,8 +40,8 @@ const RegisterModal = () => {
       <div className="flex gap-2">
         <Input
           placeholder="Nickname"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
+          value={inputs.nickname}
+          onChange={(e) => setInputs({ ...inputs, nickname: e.target.value })}
           disabled={isLoading}
         />
 
@@ -54,8 +49,8 @@ const RegisterModal = () => {
         <select
           name="genders"
           className=" bg-black/[20%] text-white border-black border-2 focus:border-purple-400 px-2 rounded-md outline-none focus:outline-none"
-          onChange={(e) => setGender(e.target.value)}
-          value={gender}
+          onChange={(e) => setInputs({ ...inputs, gender: e.target.value })}
+          value={inputs.gender}
         >
           <option value="female" className="bg-black text-white py-2 my-2">
             Female
@@ -70,15 +65,15 @@ const RegisterModal = () => {
       </div>
       <Input
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={inputs.email}
+        onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
         disabled={isLoading}
       />
       <Input
         placeholder="Password"
         type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={inputs.password}
+        onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
         disabled={isLoading}
       />
     </div>
