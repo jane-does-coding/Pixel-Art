@@ -4,13 +4,15 @@ import SidebarLogo from "./SidebarLogo";
 import SidebarItem from "./SidebarItem";
 import { BiLogOut } from "react-icons/bi";
 import SidebarPostButton from "./SidebarPostButton";
+import { FaHouseChimney } from "react-icons/fa6";
+import { FaPerson } from "react-icons/fa6";
 
 const Sidebar = () => {
   const items = [
     {
       label: "Home",
       href: "/",
-      icon: BsHouseFill,
+      icon: FaHouseChimney,
     },
     {
       label: "Notifications",
@@ -20,7 +22,7 @@ const Sidebar = () => {
     {
       label: "Profile",
       href: "/users/123",
-      icon: FaUser,
+      icon: FaPerson,
     },
   ];
 
