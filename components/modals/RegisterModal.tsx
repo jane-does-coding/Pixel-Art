@@ -5,17 +5,19 @@ import Input from "../Input";
 import Modal from "../Modal";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import useLoginModal from "@/hooks/useLoginModal";
+import axios from "axios";
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [inputs, setInputs] = useState({
-    nickname: "",
+    username: "",
     gender: "female",
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const onToggle = useCallback(() => {
     if (isLoading) return;
@@ -24,32 +26,41 @@ const RegisterModal = () => {
   }, []);
 
   const onSubmit = useCallback(async () => {
-    console.log(inputs);
-
     try {
       setIsLoading(true);
 
-      /* ADD REGISTER AND LOGIN */
+      await axios.post("/api/register", {
+        ...inputs,
+      });
+
+      setIsLoading(false);
+
+      alert("Account created.");
+
+      signIn("credentials", {
+        email: inputs.email,
+        password: inputs.password,
+      });
 
       registerModal.onClose();
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      alert("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  }, [RegisterModal, inputs]);
+  }, [inputs, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <h2 className="flex gap-2 text-neutral-300 items-center justify-start mb-4">
         <IoIosInformationCircleOutline size={28} color="white" />
-        None of your information but you nickname will be displayed
+        None of your information but you username will be displayed
       </h2>
       <div className="flex gap-2">
         <Input
-          placeholder="Nickname"
-          value={inputs.nickname}
-          onChange={(e) => setInputs({ ...inputs, nickname: e.target.value })}
+          placeholder="Username (don't use your real name)"
+          value={inputs.username}
+          onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
           disabled={isLoading}
         />
 
