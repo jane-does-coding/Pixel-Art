@@ -1,12 +1,19 @@
 "use client";
+import useLoginModal from "@/hooks/useLoginModal";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { BsChatTextFill } from "react-icons/bs";
 
 const SidebarPostButton = () => {
   const router = useRouter();
+  const loginModal = useLoginModal();
+
+  const onClick = useCallback(() => {
+    loginModal.onOpen();
+  }, [loginModal]);
 
   return (
-    <div onClick={() => router.push("/")}>
+    <div onClick={onClick}>
       <div className="lg:hidden rounded-full h-14 w-14 p-4 flex items-center justify-center bg-purple-400 hover:bg-opacity-80 transition cursor-pointer">
         <BsChatTextFill size={24} color="white" />
       </div>
