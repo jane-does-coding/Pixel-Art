@@ -4,9 +4,11 @@ import { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import useRegisterModal from "@/hooks/useRegisterModal";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -26,6 +28,12 @@ const LoginModal = () => {
       setIsLoading(false);
     }
   }, [loginModal]);
+
+  const onToggle = useCallback(() => {
+    if (isLoading) return;
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, []);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -49,6 +57,15 @@ const LoginModal = () => {
     </div>
   );
 
+  const footerContent = (
+    <p className="w-full text-center text-white my-2">
+      Don't have an account?{" "}
+      <span className="hover:underline cursor-pointer" onClick={onToggle}>
+        Sign up
+      </span>
+    </p>
+  );
+
   return (
     <Modal
       disabled={isLoading}
@@ -58,6 +75,7 @@ const LoginModal = () => {
       onClose={loginModal.onClose}
       onSubmit={onSubmit}
       body={bodyContent}
+      footer={footerContent}
     />
   );
 };

@@ -40,7 +40,7 @@ const Modal = ({
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-hidden h-screen fixed inset-0 w-full outline-none focus:outline-none z-50 bg-slate-800/70 backdrop-blur-lg lg:backdrop-blur-md">
+      <div className="justify-center items-center flex overflow-hidden h-screen fixed inset-0 w-full outline-none focus:outline-none z-50 bg-slate-700/70 backdrop-blur-lg lg:backdrop-blur-md">
         <div className="relative w-full lg:w-3/6 my-6 mx-auto max-w-3xl h-fit lg:h-auto">
           {/* CONTENT */}
           <div className="h-full w-full lg:h-auto border-0 rounded-lg shadow-lg relative flex flex-col bg-black/[30%] outline-none focus:outline-none">

@@ -4,9 +4,11 @@ import { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import useLoginModal from "@/hooks/useLoginModal";
 
 const RegisterModal = () => {
-  const RegisterModal = useRegisterModal();
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [inputs, setInputs] = useState({
     nickname: "",
     gender: "female",
@@ -15,15 +17,21 @@ const RegisterModal = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
+  const onToggle = useCallback(() => {
+    if (isLoading) return;
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, []);
+
   const onSubmit = useCallback(async () => {
     console.log(inputs);
 
     try {
       setIsLoading(true);
 
-      /* ADD LOGIN */
+      /* ADD REGISTER AND LOGIN */
 
-      RegisterModal.onClose();
+      registerModal.onClose();
     } catch (err) {
       console.log(err);
     } finally {
@@ -79,15 +87,25 @@ const RegisterModal = () => {
     </div>
   );
 
+  const footerContent = (
+    <p className="w-full text-center text-white my-2">
+      Already have an account?{" "}
+      <span className="hover:underline cursor-pointer" onClick={onToggle}>
+        Login
+      </span>
+    </p>
+  );
+
   return (
     <Modal
       disabled={isLoading}
-      isOpen={RegisterModal.isOpen}
+      isOpen={registerModal.isOpen}
       title="Register"
       actionLabel="Sign up"
-      onClose={RegisterModal.onClose}
+      onClose={registerModal.onClose}
       onSubmit={onSubmit}
       body={bodyContent}
+      footer={footerContent}
     />
   );
 };
