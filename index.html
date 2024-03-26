@@ -14,22 +14,31 @@
           <div class="opt-wrapper sliders-wrapper">
             <div class="slider">
               <label for="width-range">Grid Width</label>
-              <input type="range" id="width-range" min="1" max="25" />
-              <span id="width-value">00</span>
+              <div class="horiz">
+                <input type="range" id="width-range" min="1" max="25" />
+                <span id="width-value">00</span>
+              </div>
             </div>
             <div class="slider">
               <label for="height-range">Grid Height</label>
-              <input type="range" id="height-range" min="1" max="25" />
-              <span id="height-value">00</span>
+              <div class="horiz">
+                <input type="range" id="height-range" min="1" max="25" />
+                <span id="height-value">00</span>
+              </div>
             </div>
           </div>
 
-          <div class="opt-wrapper">
-            <button id="submit-grid">Create Grid</button>
-            <button id="clear-grid">Clear Grid</button>
-            <input type="color" id="color-input" />
-            <button id="erase-btn">Erase</button>
-            <button id="paint-btn">Paint</button>
+          <div class="opt-wrapper buttons-wrapper">
+            <div class="buttons">
+              <button id="submit-grid">Create Grid</button>
+              <button id="clear-grid">Clear Grid</button>
+              <input type="color" id="color-input" />
+            </div>
+            <div class="buttons">
+              <button id="erase-btn">Erase</button>
+              <button id="paint-btn">Paint</button>
+              <button id="download-art">Download Art</button>
+            </div>
           </div>
         </div>
       </div>
@@ -38,5 +47,6 @@
     </div>
 
     <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
   </body>
 </html>

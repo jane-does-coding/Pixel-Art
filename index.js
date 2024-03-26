@@ -1,4 +1,5 @@
 let container = document.querySelector(".container");
+let downloadArtButton = document.getElementById("download-art");
 let gridButton = document.getElementById("submit-grid");
 let clearGridButton = document.getElementById("clear-grid");
 let gridWidth = document.getElementById("width-range");
@@ -116,7 +117,21 @@ gridHeight.addEventListener("input", () => {
     gridHeight.value < 9 ? `0${gridHeight.value}` : gridHeight.value;
 });
 
+downloadArtButton.addEventListener("click", () => {
+  html2canvas(container).then((canvas) => {
+    let link = document.createElement("a");
+    link.download = "art.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+});
+
 window.onload = () => {
-  gridHeight.value = 0;
-  gridWidth.value = 0;
+  gridHeight.value = 20;
+  gridWidth.value = 20;
+  widthValue.innerHTML =
+    gridWidth.value < 9 ? `0${gridWidth.value}` : gridWidth.value;
+  heightValue.innerHTML =
+    gridHeight.value < 9 ? `0${gridHeight.value}` : gridHeight.value;
+  gridButton.click();
 };
