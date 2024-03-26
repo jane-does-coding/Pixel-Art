@@ -153,6 +153,10 @@ input[type="color"]::-moz-color-swatch {
   .container {
     min-height: fit-content;
   }
+
+  button {
+    padding: 0.5rem 1rem;
+  }
 }
 
 input[type="range"] {
