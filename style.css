@@ -138,6 +138,21 @@ input[type="color"]::-moz-color-swatch {
     height: 0.8em;
     width: 0.8em;
   }
+
+  .wrapper {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .left {
+    min-height: fit-content;
+  }
+
+  .container {
+    min-height: fit-content;
+  }
 }
 
 input[type="range"] {
