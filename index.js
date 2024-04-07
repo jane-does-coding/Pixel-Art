@@ -127,8 +127,8 @@ downloadArtButton.addEventListener("click", () => {
 });
 
 window.onload = () => {
-  gridHeight.value = 20;
-  gridWidth.value = 20;
+  gridHeight.value = 25;
+  gridWidth.value = 30;
   widthValue.innerHTML =
     gridWidth.value < 9 ? `0${gridWidth.value}` : gridWidth.value;
   heightValue.innerHTML =
